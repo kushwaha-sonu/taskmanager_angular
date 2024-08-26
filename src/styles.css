@@ -1,4 +1,4 @@
-
+@import 'ngx-toastr/toastr';
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -9,3 +9,18 @@ html,body{
     padding: 0;
     font-family: 'Roboto', sans-serif;
 }
+
+
+.toast-success {
+  background-color: #4caf50 !important;
+}
+
+.toast-error {
+  background-color: #f44336 !important;
+}
+
+.toast-top-right {
+  top: 20px;
+  right: 20px;
+}
+

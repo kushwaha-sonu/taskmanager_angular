@@ -1,36 +1,8 @@
 
-
-
-
-<!--<form (ngSubmit)="onSubmit()" [formGroup]="signupForm">-->
-<!--  <label for="email">Email:</label>-->
-<!--  <input id="email" formControlName="email" type="email" required>-->
-<!--  <div *ngIf="signupForm.get('email')?.invalid && signupForm.get('email').touched">-->
-<!--    Email is required and must be a valid email address.-->
-<!--  </div>-->
-
-<!--  <label for="password">Password:</label>-->
-<!--  <input id="password" formControlName="password" type="password" required>-->
-<!--  <div *ngIf="signupForm.get('password')?.invalid && signupForm.get('password').touched">-->
-<!--    Password is required and must be at least 6 characters long.-->
-<!--  </div>-->
-
-<!--  <button type="submit" [disabled]="signupForm.invalid">Sign Up</button>-->
-<!--</form>-->
-
-
-<!--<button (click)="loginWithGoogle()">Login with Google</button>-->
-
-<!--<ul>-->
-<!--  <li *ngFor="let user of users$ | async">-->
-<!--  {{ user.displayName }} ({{ user.email }}) ({{ user.photoURL }})-->
-<!--    <img style="width: 60px; height: 60px; border-radius: 50%" [src]="user.photoURL" alt="user" />-->
-<!--</li>-->
-<!--</ul>-->
-
 <div class="overflow-hidden">
 
 <app-navbar></app-navbar>
 <router-outlet />
+<app-footer></app-footer>
 </div>
 

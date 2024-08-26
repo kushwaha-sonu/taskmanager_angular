@@ -1,1 +1,69 @@
-<p class="font-bold text-4xl text-red-600">signin works!</p>
+<section class=" mt-20 text-slate-800 ">
+  <div class="container mx-auto py-20">
+
+    <div class="max-w-lg  mx-auto p-3 border bg-amber-50">
+
+
+      <h1 class="text-4xl font-bold text-center p-3">Sign In</h1>
+
+      <form (ngSubmit)="signInWithEmail()" [formGroup]="signinForm">
+
+        <div class="w-full flex justify-center flex-col py-1.5">
+          <label for="email" class="font-semibold">Email:</label>
+          <input id="email" class="w-full p-2 border-2 border-slate-600 rounded-md" formControlName="email" type="email"
+                 required>
+        </div>
+
+        <div *ngIf="signinForm.get('email')?.invalid && signinForm.get('email')?.touched"
+             class="text-red-500 p-1">
+          Email is required and must be a valid email address.
+        </div>
+
+        <div class="w-full flex justify-center flex-col py-1.5">
+          <label for="password" class="font-semibold">Password:</label>
+          <input id="password" class="w-full p-2 border-2 border-slate-600 rounded-md"  formControlName="password" type="password" required>
+
+        </div>
+
+        <div *ngIf="signinForm.get('password')?.invalid && signinForm.get('password')?.touched"
+             class="text-red-500 p-1">
+          Password is required and must be at least 6 characters long.
+        </div>
+
+        <div class="flex items-center justify-center pt-10 ">
+
+        <button type="submit" [disabled]="signinForm.invalid"
+                class="bg-gradient-to-tr cursor-pointer w-full from-purple-600 to-blue-500 text-white font-semibold text-2xl p-2 rounded-tl rounded-br">
+          Sign In
+        </button>
+        </div>
+
+
+      </form>
+
+      <div class="flex items-center justify-between gap-1 py-6">
+
+        <div class="border w-full h-1 bg-slate-900/70"> </div>
+        <div class="font-semibold">or</div>
+        <div class="border w-full h-1 bg-slate-900/70"> </div>
+      </div>
+
+      <div class="cursor-pointer">
+      <button (click)="loginWithGoogle()"
+              class="bg-gradient-to-tr w-full from-purple-600 to-blue-500 text-white font-semibold text-2xl p-2 rounded-tl rounded-br">
+        Continue with Google
+      </button>
+
+      </div>
+
+
+      <div class="">
+        <p class="text-center pt-6">Don't have an account? <a class="text-blue-500 cursor-pointer" (click)="redirectToSignupPage()">Sign Up</a></p>
+      </div>
+
+
+    </div>
+
+
+  </div>
+</section>
