@@ -1,4 +1,10 @@
-<section [ngClass]="taskList.length>0?'mt-20 text-slate-800':'mt-20  text-slate-800'">
+<section [ngClass]="{
+           'h-[calc(100vh-100px)]': taskList.length === 0,
+            'h-screen': taskList.length <=2,
+
+         }"
+class="mt-20"
+>
   <div class="container mx-auto py-12 ">
 
     <div class="flex items-center justify-center gap-5 bg-amber-50 p-2">
