@@ -50,6 +50,17 @@ export class SignupComponent {
       createUserWithEmailAndPassword(this.auth, email, password)
         .then(userCredential => {
 
+          const user = userCredential.user;
+          const userRef = doc(this.firestore, `users/${user.uid}`);
+          setDoc(userRef, {
+            uid: user.uid,
+            email: user.email,
+          }).then(()=>{
+            console.log('User signed up:', {
+              uid: user.uid,
+              email: user.email,});
+          });
+
           this.router.navigate(['/sign-in']).then(() => {
 
             this.toaster.success('User signed up successfully');

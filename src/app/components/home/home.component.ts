@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
 import {Router} from "@angular/router";
+import {getUserDataFromLocalStore} from "../../store";
 
 @Component({
   selector: 'app-home',
@@ -10,12 +11,30 @@ import {Router} from "@angular/router";
 })
 export class HomeComponent {
 
-  constructor(private router:Router) { }
+  user =getUserDataFromLocalStore();
+  constructor(private router: Router) {
+
+  }
+
 
 
   redirectToSignInPage() {
-    // Redirect to signIn page
-    this.router.navigate(['/sign-in']);
+
+    if (!this.user) {
+
+
+      this.router.navigate(['/sign-in']).then(() => {
+        // window.location.reload();
+      });
+      return;
+    } else {
+      this.router.navigate(['/dashboard']).then(() => {
+        // window.location.reload();
+      });
+      return;
+    }
+
+
   }
 
 }

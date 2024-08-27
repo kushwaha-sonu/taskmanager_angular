@@ -11,16 +11,31 @@ html,body{
 }
 
 
-.toast-success {
-  background-color: #4caf50 !important;
+
+
+.active-item {
+  @apply text-white w-full text-center font-semibold text-2xl text-nowrap p-1.5 hover:bg-gradient-to-tl transition-all  bg-gradient-to-tr from-purple-600 to-blue-500 rounded-tl rounded-br
 }
 
-.toast-error {
-  background-color: #f44336 !important;
+.not-active {
+  @apply font-semibold w-full text-center text-2xl text-nowrap p-1.5 rounded-tl rounded-br border-2 border-transparent;
+
+  background-image: linear-gradient(to right, #8b5cf6, #3b82f6);
+  background-origin: border-box;
+  background-clip: text, border-box;
+
+  -webkit-background-clip: text; /* Ensures text has a gradient */
+  -webkit-text-fill-color: transparent; /* Makes the text transparent so the gradient is visible */
+
+  border-image-source: linear-gradient(to right, #3bc9f3, #1591d8);
+
+  border-image-slice: 1; /* This ensures the gradient is applied to the entire border */
 }
 
-.toast-top-right {
-  top: 20px;
-  right: 20px;
+.logout{
+  @apply w-full p-2 hover:bg-gradient-to-tl transition-all  bg-gradient-to-tl from-red-600 to-yellow-500 rounded-tl rounded-br  items-center justify-center
 }
 
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

@@ -12,11 +12,12 @@ export function setUserDataToLocalStore(user: User) {
 }
 
 export function getUserDataFromLocalStore(): User | null {
-    const user = localStorage.getItem('user');
-    return user ? JSON.parse(user) : null;
+  const userData = localStorage.getItem('user');
+  return userData ? JSON.parse(userData) : null;
 }
 
 
 export function removeUserDataFromLocalStore() {
     localStorage.removeItem('user');
+    return null;
 }

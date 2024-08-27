@@ -1,0 +1,97 @@
+<section class="text-slate-800 pt-8">
+  <div class="container mx-auto py-14 p-3">
+
+    <div class="p-3">
+      <h1 class="text-center font-semibold text-2xl">Edit A Task</h1>
+    </div>
+
+    <div class="max-w-2xl mx-auto border p-3">
+      <form (ngSubmit)="onSubmit()" [formGroup]="editForm">
+
+
+        <div class="flex justify-center flex-col py-1.5">
+          <label for="title" class="font-semibold">Title:</label>
+          <input id="title" class="w-full p-2 border-2 border-slate-600 rounded-md" formControlName="title" type="text"
+                 required>
+        </div>
+
+        <div *ngIf="editForm.get('title')?.errors?.['required'] && editForm.get('title')?.touched"
+             class="text-red-500 p-1">
+          Title is required.
+        </div>
+
+        <div class="flex justify-center flex-col py-1.5">
+          <label for="description" class="font-semibold">Description:</label>
+          <textarea id="description" class="w-full p-2 border-2 border-slate-600 rounded-md"
+                    formControlName="description"
+                    required></textarea>
+        </div>
+
+        <div *ngIf="editForm.get('description')?.errors?.['required'] && editForm.get('description')?.touched"
+             class="text-red-500 p-1">
+          Description is required.
+        </div>
+
+        <div class="flex justify-center flex-col py-1.5">
+          <label for="dueDate" class="font-semibold">Due Date:</label>
+          <input id="dueDate" class="w-full p-2 border-2 border-slate-600 rounded-md" formControlName="dueDate"
+                 type="date" required>
+        </div>
+
+        <div *ngIf="editForm.get('dueDate')?.errors?.['required'] && editForm.get('dueDate')?.touched"
+             class="text-red-500 p-1">
+          Due Date is required.
+        </div>
+
+        <div class="flex justify-center flex-col py-1.5">
+          <label for="priority" class="font-semibold">Priority:</label>
+          <select id="priority" class="w-full p-2 border-2 border-slate-600 rounded-md" formControlName="priority"
+                  required>
+            <option value="low">Low</option>
+            <option value="medium">Medium</option>
+            <option value="high">High</option>
+          </select>
+
+        </div>
+
+        <div *ngIf="editForm.get('priority')?.errors?.['required'] && editForm.get('priority')?.touched"
+             class="text-red-500 p-1">
+          Priority is required.
+        </div>
+
+        <div class="flex justify-center flex-col py-1.5">
+          <label for="status" class="font-semibold">Status:</label>
+          <select id="status" class="w-full p-2 border-2 border-slate-600 rounded-md" formControlName="status"
+                  required>
+            <option value="to-do" >to-do</option>
+            <option value="in-progress">in-progress</option>
+            <option value="completed">completed</option>
+          </select>
+
+        </div>
+
+        <div *ngIf="editForm.get('status')?.errors?.['required'] && editForm.get('status')?.touched"
+             class="text-red-500 p-1">
+          Status is required.
+        </div>
+
+
+
+
+
+        <div class="flex items-center justify-center pt-10 ">
+
+          <button type="submit" [disabled]="editForm.invalid"
+                  class="bg-gradient-to-tr cursor-pointer w-full from-purple-600 to-blue-500 text-white font-semibold text-2xl p-2 rounded-tl rounded-br">
+            Update Task
+          </button>
+        </div>
+
+      </form>
+
+
+    </div>
+
+  </div>
+</section>
+

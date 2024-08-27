@@ -6,7 +6,7 @@ import { doc, Firestore, setDoc } from '@angular/fire/firestore';
 import { Router } from '@angular/router';
 import { CommonModule, NgIf } from '@angular/common';
 import { ToastrService } from 'ngx-toastr';
-import {setUserDataToLocalStore} from "../../store";
+import {getUserDataFromLocalStore, setUserDataToLocalStore} from "../../store";
 
 
 @Component({
@@ -28,6 +28,8 @@ export class SigninComponent {
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(6)]]
     });
+
+
   }
 
   redirectToSignupPage() {
@@ -49,12 +51,11 @@ export class SigninComponent {
               uid: userCredential.user.uid
             })
 
-            console.log({
-              email: userCredential.user.email,
-              displayName: userCredential.user.displayName,
-              photoURL: userCredential.user.photoURL,
-              uid: userCredential.user.uid
-            })
+
+            window.location.reload();
+
+
+
           });
         })
         .catch(error => {
@@ -82,6 +83,15 @@ export class SigninComponent {
       });
 
       this.router.navigate(['/dashboard']).then(() => {
+
+          setUserDataToLocalStore({
+            email: user.email as string,
+            displayName: user.displayName as string,
+            photoURL: user.photoURL as string,
+            uid: user.uid
+          })
+
+        // window.location.reload();
         console.log('User logged in with Google:', {
           uid: user.uid,
           email: user.email,

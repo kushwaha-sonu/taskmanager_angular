@@ -14,24 +14,120 @@
       (click)="redirectToHomePage()"
       >
         <h1
-          class="text-2xl text-white font-semibold hover:bg-gradient-to-tl transition-all  p-1.5  bg-gradient-to-tr from-purple-600 to-blue-500 rounded-tl rounded-br ">
+          class="hidden md:block"
+          [ngClass]="isActiveRoute('/')?'active-item':'not-active'"
+        >
           Home</h1>
       </div>
 
-      <div class="flex items-center justify-center cursor-pointer">
-
+      <div class="flex items-center justify-center cursor-pointer gap-5">
         <button
-          class="text-white font-semibold text-2xl text-nowrap p-1.5 hover:bg-gradient-to-tl transition-all  bg-gradient-to-tr from-purple-600 to-blue-500 rounded-tl rounded-br "
+          *ngIf="!user"
+
+          [ngClass]="isActiveRoute('/sign-in')?'active-item':'not-active'"
+
           (click)="redirectToLoginPage()">
           Sign In
         </button>
+
+        <button
+          *ngIf="user"
+          class="hidden md:block"
+          [ngClass]="isDashActiveRoute('/dashboard')?'active-item':'not-active'"
+          (click)="redirectToDashboardPage()">
+          Dashboard
+        </button>
+
+        <button
+          *ngIf="user"
+          class="hidden md:block"
+          [ngClass]="isActiveRoute('/create-task')?'active-item':'not-active'"
+          (click)="redirectToCreatePage()">
+          Create Task
+        </button>
+
+
+        <div class="flex items-center justify-center cursor-pointer">
+          <button
+            *ngIf="user"
+            class="logout hidden md:block"
+
+            (click)="onLogOut()">
+            <mat-icon>logout</mat-icon>
+          </button>
       </div>
 
 
     </div>
 
+      <div *ngIf="user" class="flex items-center justify-center md:hidden" (click)="menuBarClick()" >
+
+        <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="40" height="40" viewBox="0 0 48 48">
+          <linearGradient id="EIPc0qTNCX0EujYwtxKaXa_MmupZtPbnw66_gr1" x1="12.066" x2="34.891" y1=".066" y2="22.891" gradientUnits="userSpaceOnUse"><stop offset=".237" stop-color="#3bc9f3"></stop><stop offset=".85" stop-color="#1591d8"></stop></linearGradient><path fill="url(#EIPc0qTNCX0EujYwtxKaXa_MmupZtPbnw66_gr1)" d="M43,15H5c-1.1,0-2-0.9-2-2v-2c0-1.1,0.9-2,2-2h38c1.1,0,2,0.9,2,2v2C45,14.1,44.1,15,43,15z"></path><linearGradient id="EIPc0qTNCX0EujYwtxKaXb_MmupZtPbnw66_gr2" x1="12.066" x2="34.891" y1="12.066" y2="34.891" gradientUnits="userSpaceOnUse"><stop offset=".237" stop-color="#3bc9f3"></stop><stop offset=".85" stop-color="#1591d8"></stop></linearGradient><path fill="url(#EIPc0qTNCX0EujYwtxKaXb_MmupZtPbnw66_gr2)" d="M43,27H5c-1.1,0-2-0.9-2-2v-2c0-1.1,0.9-2,2-2h38c1.1,0,2,0.9,2,2v2C45,26.1,44.1,27,43,27z"></path><linearGradient id="EIPc0qTNCX0EujYwtxKaXc_MmupZtPbnw66_gr3" x1="12.066" x2="34.891" y1="24.066" y2="46.891" gradientUnits="userSpaceOnUse"><stop offset=".237" stop-color="#3bc9f3"></stop><stop offset=".85" stop-color="#1591d8"></stop></linearGradient><path fill="url(#EIPc0qTNCX0EujYwtxKaXc_MmupZtPbnw66_gr3)" d="M43,39H5c-1.1,0-2-0.9-2-2v-2c0-1.1,0.9-2,2-2h38c1.1,0,2,0.9,2,2v2C45,38.1,44.1,39,43,39z"></path>
+        </svg>
+
+      </div>
+
 
   </div>
 
+
+</div>
+
+  <div class="absolute  top-24 right-0 bg-sky-100 md:hidden ">
+    <div *ngIf="isMenuBarClicked" class="flex flex-col items-start justify-center gap-6 p-3 ">
+
+      <div class="flex items-center justify-center w-full cursor-pointer "
+      (click)="redirectToHomePage()"
+      >
+        <h1
+          [ngClass]="isActiveRoute('/')?'active-item':'not-active'"
+          >
+          Home</h1>
+      </div>
+
+      <div *ngIf="!user" class="flex items-center justify-center cursor-pointer w-full"
+      (click)="redirectToLoginPage()"
+      >
+        <h1
+
+          [ngClass]="isActiveRoute('/sign-in')?'active-item':'not-active'"
+        >
+          Sign In</h1>
+      </div>
+
+
+      <div *ngIf="user" class="flex items-center justify-center cursor-pointer w-full"
+           (click)="redirectToDashboardPage()"
+      >
+        <h1
+          class="w-full"
+          [ngClass]="isDashActiveRoute('/dashboard')?'active-item':'not-active'"
+        >
+          Dashboard</h1>
+      </div>
+
+      <div class="flex items-center justify-center cursor-pointer w-full"
+      (click)="redirectToCreatePage()"
+      >
+        <h1
+          class="w-full"
+          [ngClass]="isActiveRoute('/create-task')?'active-item':'not-active'"
+          >
+          Create Task</h1>
+      </div>
+
+      <div class="flex items-center justify-center cursor-pointer w-full"
+      (click)="onLogOut()"
+      >
+        <button
+        class="logout md:hidden"
+        >
+          <mat-icon>logout</mat-icon>
+        </button>
+      </div>
+
+    </div>
+  </div>
 
 </div>
