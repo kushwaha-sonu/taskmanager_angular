@@ -71,8 +71,10 @@ export class SigninComponent {
 
   async loginWithGoogle() {
     const provider = new GoogleAuthProvider();
+
     try {
       const result = await signInWithPopup(this.auth, provider);
+
       const user = result.user;
       const userRef = doc(this.firestore, `users/${user.uid}`);
       await setDoc(userRef, {
@@ -83,27 +85,27 @@ export class SigninComponent {
       });
 
       this.router.navigate(['/dashboard']).then(() => {
+        setUserDataToLocalStore({
+          email: user.email as string,
+          displayName: user.displayName as string,
+          photoURL: user.photoURL as string,
+          uid: user.uid
+        });
 
-          setUserDataToLocalStore({
-            email: user.email as string,
-            displayName: user.displayName as string,
-            photoURL: user.photoURL as string,
-            uid: user.uid
-          })
-
-        // window.location.reload();
+        window.location.reload();
         console.log('User logged in with Google:', {
           uid: user.uid,
           email: user.email,
           displayName: user.displayName,
           photoURL: user.photoURL
         });
-
       });
     } catch (error) {
       console.error('Error logging in with Google:', error);
     }
   }
+
+
 
 
 }
